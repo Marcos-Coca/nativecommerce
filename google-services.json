@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1048850626135",
+    "project_id": "nativecommerce-c7052",
+    "storage_bucket": "nativecommerce-c7052.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048850626135:android:68bc78a9860213ae109512",
+        "android_client_info": {
+          "package_name": "com.nativecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048850626135-r8jo4tc2qi6p1vacir9rku8v2prm59ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABBVlEhLG9DThagCgMTnIVphtpJK6xxeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048850626135-r8jo4tc2qi6p1vacir9rku8v2prm59ts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1048850626135-qb56q1647i3suq0piio7sdhuu15h0imb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nativecommerce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
