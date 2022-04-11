@@ -7,7 +7,9 @@
       "@products/*": ["products/*"],
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./utils/*"],
-      "@ui/*": ["ui/*"]
-    }
+      "@ui/*": ["ui/*"],
+      "@config/*": ["config/*"]
+    },
+    "typeRoots": ["./src/types"]
   }
 }

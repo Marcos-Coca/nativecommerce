@@ -1,11 +1,17 @@
-import { ImageBackground, ScrollView, View } from "react-native"
+import { useEffect } from "react"
+import { FlatList, ImageBackground, ScrollView, View } from "react-native"
+import useSWR from "swr"
 
 import styles from "./ProductsMain.style"
 
 import Text from "@ui/Text"
 import Button from "@ui/Button"
+import product from "@products/services/product"
 
 export default function ProductsMain() {
+  const { data, error, isValidating } = useSWR(" ", product.search)
+  useEffect(() => {}, [data, error, isValidating])
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -35,6 +41,12 @@ export default function ProductsMain() {
           You have never seen it before
         </Text>
       </ScrollView>
+
+      <FlatList
+        data={data}
+        renderItem={({ item }) => <Text>{item.title}</Text>}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   )
 }
