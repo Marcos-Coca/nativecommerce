@@ -1,19 +1,22 @@
-import { useEffect } from "react"
 import { FlatList, ImageBackground, ScrollView, View } from "react-native"
-import useSWR from "swr"
 
 import styles from "./ProductsMain.style"
 
 import Text from "@ui/Text"
 import Button from "@ui/Button"
-import product from "@products/services/product"
+
+import useProducts from "@products/hooks/useProducts"
+import MainProductCard from "@products/components/MainProductCard"
 
 export default function ProductsMain() {
-  const { data, error, isValidating } = useSWR(" ", product.search)
-  useEffect(() => {}, [data, error, isValidating])
+  const { products, error, isLoading } = useProducts()
+
+  if (error) {
+    return <Text>Error</Text>
+  }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <ImageBackground
         resizeMode="cover"
         style={styles.image}
@@ -30,23 +33,34 @@ export default function ProductsMain() {
         </View>
       </ImageBackground>
 
-      <ScrollView style={styles.productsContainer}>
-        <View style={styles.sectionTitleContainer}>
-          <Text weight="bold" size="headline">
-            New
+      <View style={styles.productsContainer}>
+        <View style={styles.productsHeader}>
+          <View style={styles.sectionTitleContainer}>
+            <Text weight="bold" size="headline">
+              New
+            </Text>
+            <Button fill="text">View All</Button>
+          </View>
+          <Text color="muted" size="caption">
+            You have never seen it before
           </Text>
-          <Button fill="text">View All</Button>
         </View>
-        <Text color="muted" size="caption">
-          You have never seen it before
-        </Text>
-      </ScrollView>
-
-      <FlatList
-        data={data}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+        {isLoading ? (
+          <Text>Loading</Text>
+        ) : (
+          <FlatList
+            data={products}
+            horizontal={true}
+            keyExtractor={(item) => item.id}
+            ItemSeparatorComponent={() => <View style={{ marginRight: 16 }} />}
+            renderItem={({ item }) => (
+              <View style={styles.productCardContainer}>
+                <MainProductCard product={item}></MainProductCard>
+              </View>
+            )}
+          />
+        )}
+      </View>
+    </ScrollView>
   )
 }

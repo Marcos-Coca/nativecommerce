@@ -27,10 +27,9 @@ const defaultTheme = {
     headline: 34,
     headline2: 24,
     headline3: 18,
-    subhead: 16,
     body: 16,
     body2: 14,
-    caption: 11,
+    caption: 12,
   },
   fontWeights: {
     normal: "400",

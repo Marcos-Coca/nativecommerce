@@ -10,4 +10,5 @@ export interface Product {
   originalPrice?: number
   type: "available" | "unavailable" | "hidden" | "promotional"
   featured?: boolean
+  shop: string
 }

@@ -17,9 +17,6 @@ export default StyleSheet.create({
   muted: {
     color: theme.colors.fontMuted,
   },
-  subhead: {
-    fontSize: theme.fontSizes.subhead,
-  },
   medium: {
     fontSize: theme.fontSizes.body,
   },
