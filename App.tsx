@@ -1,13 +1,13 @@
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 
-import ProductsMain from "@products/screens/ProductsMain"
+import Navigator from "./src/navigator"
+import { NavigationContainer } from "@react-navigation/native"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ProductsMain />
-      {/* <StatusBar style="auto" /> */}
-    </View>
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
   )
 }
 

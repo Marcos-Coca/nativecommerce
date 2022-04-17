@@ -1,15 +1,26 @@
 import { FlatList, ImageBackground, ScrollView, View } from "react-native"
+import type { NativeStackScreenProps } from "@react-navigation/native-stack"
 
 import styles from "./ProductsMain.style"
 
 import Text from "@ui/Text"
 import Button from "@ui/Button"
 
-import useProducts from "@products/hooks/useProducts"
 import MainProductCard from "@products/components/MainProductCard"
+import useProducts from "@products/hooks/useProducts"
+import { ProductStackParamList } from "@products/screens/routes"
+import { Product } from "@products/types"
 
-export default function ProductsMain() {
+type ProductsMainProps = NativeStackScreenProps<ProductStackParamList, "Home">
+
+export default function ProductsMain({ navigation }: ProductsMainProps) {
   const { products, error, isLoading } = useProducts()
+
+  const onPressProductCard = (product: Product) => {
+    navigation.navigate("Details", {
+      productId: product.id,
+    })
+  }
 
   if (error) {
     return <Text>Error</Text>
@@ -17,11 +28,7 @@ export default function ProductsMain() {
 
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground
-        resizeMode="cover"
-        style={styles.image}
-        source={require("../../../../assets/products-main-background.jpg")}
-      >
+      <ImageBackground resizeMode="cover" style={styles.image} source={require("../../../../assets/products-main-background.jpg")}>
         <View style={styles.imageContent}>
           <Text weight="bold" style={styles.title} color="inverted">
             Fashion
@@ -55,7 +62,7 @@ export default function ProductsMain() {
             ItemSeparatorComponent={() => <View style={{ marginRight: 16 }} />}
             renderItem={({ item }) => (
               <View style={styles.productCardContainer}>
-                <MainProductCard product={item}></MainProductCard>
+                <MainProductCard onPress={onPressProductCard} product={item}></MainProductCard>
               </View>
             )}
           />

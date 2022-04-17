@@ -1,5 +1,5 @@
 import { Product } from "@products/types"
-import { View, Image } from "react-native"
+import { View, Image, TouchableOpacity } from "react-native"
 
 import Card from "@ui/Card"
 import Text from "@ui/Text"
@@ -8,16 +8,24 @@ import styles from "./MainProductCard.style"
 
 export interface MainProductCardProps {
   product: Product
+  onPress: (product: Product) => void
 }
 
-export default function MainProductCard({ product }: MainProductCardProps) {
+export default function MainProductCard({
+  product,
+  onPress,
+}: MainProductCardProps) {
+  const handleOnPressCard = () => {
+    onPress(product)
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={handleOnPressCard} style={styles.container}>
       <Card>
         <View>
           <Image
             style={styles.cardImage}
-            source={require("../../../../assets/products-main-background.jpg")}
+            source={{ uri: product.image }}
           ></Image>
         </View>
         <Text color="muted" size="caption">
@@ -28,6 +36,6 @@ export default function MainProductCard({ product }: MainProductCardProps) {
         </Text>
         <Text weight="bold">${product.price}</Text>
       </Card>
-    </View>
+    </TouchableOpacity>
   )
 }
