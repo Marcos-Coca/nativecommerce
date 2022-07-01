@@ -9,14 +9,14 @@ import Button from "@ui/Button"
 import MainProductCard from "@products/components/MainProductCard"
 import useProducts from "@products/hooks/useProducts"
 import { ProductStackParamList } from "@products/screens/routes"
-import { Product } from "@products/types"
+import { ListProduct } from "@products/types"
 
 type ProductsMainProps = NativeStackScreenProps<ProductStackParamList, "Home">
 
 export default function ProductsMain({ navigation }: ProductsMainProps) {
   const { products, error, isLoading } = useProducts()
 
-  const onPressProductCard = (product: Product) => {
+  const onPressProductCard = (product: ListProduct) => {
     navigation.navigate("Details", {
       productId: product.id,
     })

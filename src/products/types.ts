@@ -1,4 +1,4 @@
-export interface Product {
+export interface ListProduct {
   id: string
   createdAt: number
   updatedAt: number
@@ -11,4 +11,8 @@ export interface Product {
   type: "available" | "unavailable" | "hidden" | "promotional"
   featured?: boolean
   shop: string
+}
+
+export interface Product extends ListProduct {
+  options: Record<string, any>
 }
